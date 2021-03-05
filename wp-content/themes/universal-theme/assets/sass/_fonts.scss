@@ -1,0 +1,25 @@
+@font-face { 
+  font-family: "Lato Black";
+  src:
+      /*local сначала подгрузит локальную версию у пользователя, если ее нет, то подключит наш*/
+      local("Lato-Black"),
+      local("Lato Black"),
+      url(..fonts/Lato-Black.woff) format("woff"), /* все современные браузеры, IE9+ */
+      url(..fonts/Lato-Black.woff2) format("woff2"); /* все современные браузеры */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face { 
+  font-family: "Lato Regular";
+  src:
+      local("Lato-Regular"),
+      local("Lato Regular"),
+      url(../fonts/Lato-Regular.woff) format("woff"), /* все современные браузеры, IE9+ */
+      url(../fonts/Lato-Regular.woff2) format("woff2"); /* все современные браузеры */
+  font-style: normal;
+  font-display: swap;
+}
+body{
+  font-family: 'Lato Regular', sans-serif;
+  font-size: 14px;
+}
