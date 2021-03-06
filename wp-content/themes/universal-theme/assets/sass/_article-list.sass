@@ -1,0 +1,41 @@
+.article
+  &-list
+    margin: 0
+    margin-top: 180px
+    padding: 0
+    list-style: none
+    display: flex
+    align-items: center
+    background: #30363D
+    border-radius: 10px
+  &-item
+    position: relative
+    width: 25%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 30px 25px 35px
+    &:not(:last-child)::after
+      top: 50%
+      transform: translateY(-50%)
+      right: 0
+      content: ''
+      position: absolute
+      height: 70%
+      width: 1px
+      background: #4B5157;
+
+  &-permalink
+    width: 150px
+    text-decoration: none
+    color: #fff
+    &:hover
+      color: #fff
+      cursor: pointer
+    &:visited
+      color: #fff
+  &-title
+    margin: 0
+    font-weight: 900
+    font-size: 14px
+    line-height: 20px

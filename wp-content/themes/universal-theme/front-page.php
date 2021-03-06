@@ -10,7 +10,8 @@ global $post;
 //get_posts отраляем в бд запрос
 $myposts = get_posts([ 
   //возьми 5 последних постов
-	'numberposts' => 1
+	'numberposts' => 1,
+  'category_name' => 'css, html, javascript, web-design'
   
 ]);
 //проверяем, есть ли посты
@@ -32,16 +33,16 @@ if( $myposts ){
       </a>
       <div class="post-text">
         <?php the_category()?>
-        <h2 class="post-title"><?php the_title()?></h2>
+        <h2 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...')?></h2>
         <a href="<?php echo get_the_permalink(); ?>" class="more">Читать далее</a>
       </div>
       <?php 
-	}
-} else {
-	?><p>Постов нет</p><?php // Постов не найдено
-}
+    }
+  } else {
+    ?><p>Постов нет</p><?php // Постов не найдено
+    }
 
-wp_reset_postdata(); // Сбрасываем $post
+        wp_reset_postdata(); // Сбрасываем $post
 ?>
       </div>
       <!-- /.left -->
@@ -57,6 +58,7 @@ $myposts = get_posts([
   //возьми 5 последних постов
 	'numberposts' => 5,
   'offset' => 1,
+  'category_name' => 'css, html, javascript, web-design'
   
 ]);
 //проверяем, есть ли посты
@@ -67,25 +69,58 @@ if( $myposts ){
 		?>
           <li class="post">
             <?php the_category()?>
-            <a class="post-permalink" href="<?php echo get_the_permalink()?>"> <h4 class="post-title"><?php the_title()?></h4></a>
+            <a class="post-permalink" href="<?php echo get_the_permalink()?>"> <h4 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...')?></h4></a>
           </li>
           <?php 
-	}
-} else {
-	?><p>Постов нет</p><?php // Постов не найдено
-}
+            }
+          } else {
+            ?><p>Постов нет</p><?php // Постов не найдено
+          }
 
-wp_reset_postdata(); // Сбрасываем $post
-?>
+          wp_reset_postdata(); // Сбрасываем $post
+          ?>
         </ul>
       </div>
       <!-- /.right -->
     </div>
     <!-- /.hero -->
-
-   
-	
-
   </div>
   <!-- /.container -->
 </main>
+<div class="container">
+  <ul class="article-list">
+    <?php
+//объявляем глобальную переменную 
+global $post;
+
+//get_posts отраляем в бд запрос
+$myposts = get_posts([ 
+//возьми 5 последних постов
+'numberposts' => 4,
+'category_name' => 'articles'
+
+]);
+//проверяем, есть ли посты
+if( $myposts ){
+//если есть, запускаем цыкл
+foreach( $myposts as $post ){
+setup_postdata( $post );
+?>
+      <li class="article-item">
+        <a class="article-permalink" href="<?php echo get_the_permalink()?>"> 
+          <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...')?></h4>
+        </a>
+        <img src="<?php echo get_the_post_thumbnail_url( null, 'homepage-thumb') ?>" width="65" height="65" alt="">
+      </li>
+      <?php 
+        }
+      } else {
+        ?><p>Постов нет</p><?php // Постов не найдено
+      }
+
+      wp_reset_postdata(); // Сбрасываем $post
+      ?>
+    </ul>
+
+</div>
+<!-- /.container -->
