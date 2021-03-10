@@ -4,8 +4,8 @@
       /*local сначала подгрузит локальную версию у пользователя, если ее нет, то подключит наш*/
       local("Lato-Black"),
       local("Lato Black"),
-      url(..fonts/Lato-Black.woff) format("woff"), /* все современные браузеры, IE9+ */
-      url(..fonts/Lato-Black.woff2) format("woff2"); /* все современные браузеры */
+      url(../fonts/Lato-Black.woff) format("woff"), /* все современные браузеры, IE9+ */
+      url(../fonts/Lato-Black.woff2) format("woff2"); /* все современные браузеры */
   font-style: normal;
   font-display: swap;
 }

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
   font-family: "Lato Black";
-  src: local("Lato-Black"), local("Lato Black"), url(..fonts/Lato-Black.woff) format("woff"), url(..fonts/Lato-Black.woff2) format("woff2");
+  src: local("Lato-Black"), local("Lato Black"), url(../fonts/Lato-Black.woff) format("woff"), url(../fonts/Lato-Black.woff2) format("woff2");
   /* все современные браузеры */
   font-style: normal;
   font-display: swap;
@@ -370,6 +370,18 @@ body {
   line-height: 20px;
 }
 
+.main-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
 .article-grid {
   max-width: 850px;
   margin: 30px 0 30px 0;
@@ -421,7 +433,7 @@ body {
 
 .article-grid-item-1 .article-grid-title {
   width: 90%;
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: bold;
   font-size: 25px;
@@ -479,7 +491,7 @@ body {
   overflow: hidden;
 }
 
-.article-grid-item-1 .article-grid-info .author-name b {
+.article-grid-item-1 .article-grid-info .author-name strong {
   font-family: "Lato Black", sans-serif;
   font-size: 14px;
   line-height: 20px;
@@ -698,4 +710,62 @@ body {
 .article-grid-item-default .article-grid-excerpt {
   margin-bottom: auto;
   margin-top: 0;
+}
+
+.sidebar-front-page {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.widget-downloader {
+  position: relative;
+  background: #3BBDC4 url("../images/file.svg") no-repeat top 22px right 24px;
+  border-radius: 10px;
+  color: #fff;
+  padding: 25px 25px 55px 25px;
+}
+
+.widget-downloader .widget-title {
+  margin-top: 0;
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.widget-downloader .widget-link {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Lato Black", sans-serif;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.widget-downloader .widget-link-icon {
+  margin-right: 10px;
+}
+
+.widget-downloader .description {
+  color: #C1F4F5;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0;
 }
