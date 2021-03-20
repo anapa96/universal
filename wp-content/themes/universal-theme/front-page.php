@@ -129,8 +129,8 @@ if( $myposts ){
           //формируем запрос в бд
           $query = new WP_Query( [
             //получаем 7 постов
-            'posts_per_page' => 6,
-            'category_name' => 'articles'
+            'posts_per_page' => 7,
+            'category__not_in' => 22
           ] );
             //проверяем есть ли посты
           if ( $query->have_posts() ) {
@@ -210,7 +210,7 @@ if( $myposts ){
                                 <span class="comments-counter"><?php comments_number('0', '1', '%') ?></span>
                             </div>
                             <div class="likes">
-                              <img src="<?php echo get_template_directory_uri() . '/assets/images/heart.svg' ?>" 
+                              <img src="<?php echo get_template_directory_uri() . '/assets/images/heart-white.svg' ?>" 
                                 alt="icon: like" class="likes-icon">
                               <span class="likes-counter"><?php comments_number('0', '1', '%') ?></span>
                             </div>
@@ -265,3 +265,102 @@ if( $myposts ){
     
     </div>
     <!-- /.container -->
+
+   
+    
+
+<!---блок расследования-->
+<?php		
+  global $post;
+
+  $query = new WP_Query( [
+    'posts_per_page' => 1,
+    'category_name' => 'investigation',
+  ] );
+
+  if ( $query->have_posts() ) {
+    while ( $query->have_posts() ) {
+      $query->the_post();
+      ?>
+      <section class="investigation" style="background:  linear-gradient(0deg, rgba(64, 48, 61, 0.35), rgba(64, 48, 61, 0.35)), url(<?php echo get_the_post_thumbnail_url()?>) no-repeat center center">
+        <div class="container">
+          <h2 class="investigation-title"><?php the_title( )?></h2>
+          <a href="<?php echo get_the_permalink(); ?>" class="more">Читать статью</a>
+        </div>
+      </section>
+      <?php 
+    }
+  } else {
+    // Постов не найдено
+  }
+  wp_reset_postdata(); // Сбрасываем $post
+?>
+<!--/блок расследования-->
+
+<div class="digest-wrapper">
+<div class="container">
+  <ul class="digest">
+  <?php		
+  global $post;
+  
+  $query = new WP_Query( [
+    'posts_per_page' => 6,
+    'orderby'        => 'comment_count',
+  ] );
+  
+  if ( $query->have_posts() ) {
+    $cnt=0;
+    while ( $query->have_posts() ) {
+      $query->the_post();
+      $cnt++;
+      
+      ?>
+      <li class="digest-item">
+        <a href="<?php the_permalink()?>" class="digest-item-permalink">
+          <img src="<?php echo get_the_post_thumbnail_url()?>" class="digest-thumb">
+        </a>
+        <div class="digest-info">
+          <button class="bookmark">
+            <svg width="14" height="18" class="icon icon-bookmark">
+              <use xlink:href=""></use>
+            </svg>
+          </button>
+
+          <a href="<?php  $cat = get_the_category(); 
+                          $cat_name = $cat[0]->name;
+                          $cat_id = get_cat_ID ($cat_name);
+                          echo get_category_link($cat_id); ?>" class="category-link javascript"><?php echo $cat_name?></a>
+          <a href="<?php the_permalink()?>" class="digest-item-permalink">
+          <h3 class="digest-title"><?php the_title()?></h3>
+          </a>
+
+          <p class="digest-excerpt">  <?php echo mb_strimwidth(get_the_excerpt(), 0, 185, '...');?></p>
+
+          <div class="digest-footer">
+            <span class="digest-date"><?php the_time( 'j F' )?></span>
+            <div class="comments digest-comments">
+              <svg width="19" height="15" class="icon comments-icon">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1346 11.9998V14.9998L8.36064 11.9998H2.25C1.42157 11.9998 0.75 11.3282 0.75 10.4998V2.99976C0.75 2.17133 1.42157 1.49976 2.25 1.49976H12.75C13.5784 1.49976 14.25 2.17133 14.25 2.99976V10.4998C14.25 11.3282 13.5784 11.9998 12.75 11.9998H11.1346Z" fill="#BCBFC2"/>
+              </svg>
+              <span class="comments-counter"><?php comments_number('0', '1', '%')?></span>
+            </div>
+            <div class="likes digest-likes">
+              <img src="<?php echo get_template_directory_uri().'/assets/images/heart.svg'?>" alt="icon: like" class="likes-icon">
+              <span class="likes-counter"><?php comments_number('0', '1', '%')?></span>
+            </div>
+          </div>
+          <!-- /.digest-footer -->
+        </div>
+        <!-- /.digest-info -->
+      </li>
+      <?php 
+    }
+  } else {
+    // Постов не найдено
+  }
+  
+  wp_reset_postdata(); // Сбрасываем $post
+  ?>
+  </ul>
+  </div>
+</div>
