@@ -7,12 +7,12 @@
  * @package universal-example
  */
 //если есть сайдар с id main-sidebar
-if ( ! is_active_sidebar( 'main-sidebar' ) ) {
+if ( ! is_active_sidebar( 'main-sidebar-top' ) ) {
   //nj продолжаем работу в этом файле
 	return;
 }
 ?>
 
 <aside id="secondary" class="sidebar-front-page">
-	<?php dynamic_sidebar( 'main-sidebar' ); ?>
+	<?php dynamic_sidebar( 'main-sidebar-top' ); ?>
 </aside><!-- #secondary -->

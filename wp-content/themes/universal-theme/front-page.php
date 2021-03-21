@@ -22,7 +22,7 @@ if( $myposts ){
 		?>
     <!--Выводим записи-->
       <img src="<?php the_post_thumbnail_url(); ?>" alt="" class="post-thumb">
-      //узнаем id автора
+      <!--//узнаем id автора-->
       <?php $author_id=get_the_author_meta('ID') ?>
  
      <a href="<?php echo get_author_posts_url($author_id)?>"class="author">
@@ -33,7 +33,17 @@ if( $myposts ){
         </div>
       </a>
       <div class="post-text">
-        <?php the_category()?>
+        <?php foreach (get_the_category() as $category){
+          printf(
+            '<a href="%s" class="category-link %s">%s</a>',
+            esc_url(get_category_link($category)),
+            esc_html($category -> slug),
+            $category -> name
+
+          );
+        }
+        
+        ?>
         <h2 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...')?></h2>
         <a href="<?php echo get_the_permalink(); ?>" class="more">Читать далее</a>
       </div>
@@ -69,7 +79,17 @@ if( $myposts ){
 		setup_postdata( $post );
 		?>
           <li class="post">
-            <?php the_category()?>
+          <?php foreach (get_the_category() as $category){
+          printf(
+            '<a href="%s" class="category-link %s">%s</a>',
+            esc_url(get_category_link($category)),
+            esc_html($category -> slug),
+            $category -> name
+
+          );
+        }
+        
+        ?>
             <a class="post-permalink" href="<?php echo get_the_permalink()?>"> <h4 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...')?></h4></a>
           </li>
           <?php 
@@ -148,9 +168,16 @@ if( $myposts ){
                   ?>
                   <li class="article-grid-item article-grid-item-1">
                     <a href="<?php the_permalink()?>" class="article-grid-permalink">
-                      <span class="categorory-name">
-                        <?php $category = get_the_category();
-                          echo $category[0]->name;?>
+                        <?php foreach (get_the_category() as $category){
+                              printf(
+                                '<span class="category-link %s">%s</span>',
+                                esc_html($category -> slug),
+                                $category -> name
+
+                              );
+                            }
+                            
+                            ?>
                         </span>
                         <h4 class="article-grid-title">
                           <?php the_title()?>
@@ -259,7 +286,7 @@ if( $myposts ){
       <!-- /.artical-grid -->
 
       <!--Полючаем сайдбар-->
-      <?php get_sidebar();?>
+      <?php get_sidebar('home-top');?>
       </div>
 
     
@@ -297,8 +324,9 @@ if( $myposts ){
 ?>
 <!--/блок расследования-->
 
-<div class="digest-wrapper">
 <div class="container">
+<div class="main-grid">
+<div class="digest-wrapper">
   <ul class="digest">
   <?php		
   global $post;
@@ -326,10 +354,17 @@ if( $myposts ){
             </svg>
           </button>
 
-          <a href="<?php  $cat = get_the_category(); 
-                          $cat_name = $cat[0]->name;
-                          $cat_id = get_cat_ID ($cat_name);
-                          echo get_category_link($cat_id); ?>" class="category-link javascript"><?php echo $cat_name?></a>
+          <?php foreach (get_the_category() as $category){
+          printf(
+            '<a href="%s" class="category-link %s">%s</a>',
+            esc_url(get_category_link($category)),
+            esc_html($category -> slug),
+            $category -> name
+
+          );
+        }
+        
+        ?>
           <a href="<?php the_permalink()?>" class="digest-item-permalink">
           <h3 class="digest-title"><?php the_title()?></h3>
           </a>
@@ -362,5 +397,11 @@ if( $myposts ){
   wp_reset_postdata(); // Сбрасываем $post
   ?>
   </ul>
-  </div>
 </div>
+<!-- /.digest-wrapper -->
+<!--Подключаем нижний сайдбар-->
+<?php get_sidebar('home-bottom');?>
+</div>
+<!-- /.main-grid -->
+</div>
+  <!-- /.container -->
