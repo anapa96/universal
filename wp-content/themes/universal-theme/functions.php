@@ -124,7 +124,8 @@ class Downloader_Widget extends WP_Widget {
 		}
 		if ( ! empty( $link ) ) {
 			echo '<a class="widget-link" target="_blank" href="'.$link.'">
-			<img class="widget-link-icon" src="' . get_template_directory_uri() . '/assets/images/download.svg">
+			<svg width="20" height="20" fill="#fff" class="widget-link-icon">	<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#download"></use>
+			</svg>
 			Скачать</a>';
 		}
 		echo $args['after_widget'];
@@ -523,8 +524,12 @@ add_action( 'widgets_init', 'register_recent_posts_widget' );
 function enqueue_universal_style() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
                   /*название, где лежит, от каких файлов зависит, версия, для каких типов устройств*/
+									wp_enqueue_style( 'swiper-slider', get_template_directory_uri(  ) . '/assets/css/swiper-bundle.min.css', 'style');
   wp_enqueue_style( 'universal-theme', get_template_directory_uri(  ) . '/assets/css/universal-theme.css', 'style');
+	
   wp_enqueue_style( 'Roboto-Slab', 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+	wp_enqueue_script( 'swiper', get_template_directory_uri(  ) . '/assets/js/swiper-bundle.min.js', null, time(), true);
+	wp_enqueue_script( 'scripts', get_template_directory_uri(  ) . '/assets/js/scripts.js', 'swiper', time(), true);
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
 
