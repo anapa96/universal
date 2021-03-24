@@ -71,6 +71,41 @@ function universal_theme_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+//вешаем функцию universal_theme_widgets_init (инициализация стандартных виджетов wp) на хук-событие widgets_init. 
+add_action( 'widgets_init', 'universal_theme_widgets_init' );
+
+	//регистрируем сайдбар
+	register_sidebar(
+		array(
+      //название сайдбара
+			'name'          => esc_html__( 'Меню в подвале', 'universal-example' ),
+			'id'            => 'sidebar-footer',
+			'description'   => esc_html__( 'Добавьте меню сюда', 'universal-example' ),
+      //что будет перед этим виджитом: section с id виджита и классом
+			'before_widget' => '<section id="%1$s" class="footer-menu %2$s">',
+      //после виджита
+			'after_widget'  => '</section>',
+      //ешеду виджета
+			'before_title'  => '<h2 class="footer-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	//регистрируем сайдбар
+	register_sidebar(
+		array(
+      //название сайдбара
+			'name'          => esc_html__( 'Текст в подвале', 'universal-example' ),
+			'id'            => 'sidebar-footer-text',
+			'description'   => esc_html__( 'Добавьте текст сюда', 'universal-example' ),
+      //что будет перед этим виджитом: section с id виджита и классом
+			'before_widget' => '<section id="%1$s" class="footer-text %2$s">',
+      //после виджита
+			'after_widget'  => '</section>',
+      //ешеду виджета
+			'before_title'  => '',
+			'after_title'   => '',
+		)
+	);
 }
 //вешаем функцию universal_theme_widgets_init (инициализация стандартных виджетов wp) на хук-событие widgets_init. 
 add_action( 'widgets_init', 'universal_theme_widgets_init' );

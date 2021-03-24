@@ -605,4 +605,4 @@ wp_reset_postdata(); // сброс
 </div>
 <!-- /.special -->
 
-<?php wp_footer();?>
+<?php get_footer();?>
