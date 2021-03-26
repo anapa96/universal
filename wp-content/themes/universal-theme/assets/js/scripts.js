@@ -10,3 +10,10 @@ const swiper = new Swiper('.swiper-container', {
     delay: 5000,
   },
 });
+
+let menuToggle = $('.header-menu-toggle');
+menuToggle.on('click', function (event){
+  event.preventDefault();
+  console.log('Клик по кнопке меню');
+  $('.header-nav').slideToggle(200);
+})

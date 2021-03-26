@@ -159,7 +159,7 @@ if( $myposts ){
           //формируем запрос в бд
           $query = new WP_Query( [
             //получаем 7 постов
-            'posts_per_page' => 7,
+            'posts_per_page' => 6,
             'category__not_in' => 22
           ] );
             //проверяем есть ли посты

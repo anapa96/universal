@@ -2,8 +2,6 @@
   display: flex
   justify-content: space-between
   align-items: flex-start
-  padding-top: 30px
-  padding-bottom: 30px
 .article
   &-grid
     width: 74%
@@ -18,27 +16,28 @@
     &-permalink
       text-decoration: none
       color: #262D33
-      &:hover
+      &:visited
         color: #262D33
     &-item
+      background-color: #ffffff
       border-radius: 10px
-      background-color: #fff
       overflow: hidden
       &-1
-        grid-area: 1 / 1 / 2 / 3
-        padding: 35px 35px 53px 35px
         position: relative
+        grid-area: 1 / 1 / 2 / 3
+        padding: 35px 35px 13px 35px
         overflow: hidden
-        .category-name
-          font-weight: 900
-          font-size: 12px
-          line-height: 15px
-          text-transform: uppercase
-          color: #6E99AE
+        .categorory
+          &-name
+            font-weight: 900
+            font-size: 12px
+            line-height: 15px 
+            text-transform: uppercase  
+            color: #6E99AE
         .article-grid
           &-title
             width: 90%
-            font-family: Roboto Slab
+            font-family: 'Roboto Slab'
             font-style: normal
             font-weight: bold
             font-size: 25px
@@ -49,18 +48,19 @@
             font-size: 14px
             line-height: 20px
             width: 60%
-            margin-bottom: 40px
+            margin-bottom: 80px
           &-info
             position: absolute
             bottom: 0
             left: 0
             right: 0
-            padding: 15px 35px
-            border-top: 1px solid #D9DADB
-            background-color: #fff
             display: flex
             align-items: center
             justify-content: space-between
+            width: 100%
+            padding: 15px 35px
+            border-top: 1px solid #D9DADB
+            background-color: #fff
             .author
               display: flex
               align-items: center
@@ -70,13 +70,23 @@
                 border-radius: 50%
                 margin-right: 10px
               &-name
-                width: 390px
+                max-width: 390px
                 white-space: nowrap
                 overflow: hidden
                 strong
                   font-family: "Lato Black", sans-serif
                   font-size: 14px
                   line-height: 20px
+            .comments
+              display: flex
+              align-items: center
+              &-counter
+                font-size: 12px
+                line-height: 15px
+                color: #939699
+                margin-left: 5px
+              &-icon
+                fill: #BCBFC2;
       &-2
         grid-area: 1 / 3 / 2 / 4
         position: relative
@@ -85,9 +95,10 @@
           content: ''
           position: absolute
           z-index: 0
-          background: linear-gradient(0deg, rgba(64, 48, 61, 0.35), rgba(64, 48, 61, 0.35))
+          position: absolute
           width: 100%
           height: 100%
+          background: linear-gradient(0deg, rgba(64, 48, 61, 0.35), rgba(64, 48, 61, 0.35)), url(diego-ph-fIq0tET6llw-unsplash.jpg)
         .article-grid
           &-thumb
             position: absolute
@@ -99,12 +110,12 @@
             object-fit: cover
           &-permalink
             position: absolute
-            left: 0
-            right: 0
             top: 0
+            right: 0
+            bottom: 0
+            left: 0
             height: 100%
             display: flex
-            bottom: 0
             flex-direction: column
             justify-content: space-between
             align-items: flex-start
@@ -115,33 +126,32 @@
             font-weight: bold
             font-size: 16px
             line-height: 25px
-            margin-top: 23px
-            margin-bottom: 27px
-            color: #ffffff
+            margin: 23px 0 27px 0
+            color: #fff
         .tag
           padding: 5px 12px
           background: #3DC47E
           border-radius: 3px
-          color: #ffffff
-          font-size: 12px
-          line-height: 15px
+          color: #fff
+          font-size: 12px;
+          line-height: 15px;
           text-transform: capitalize
         .category-name
           margin-top: auto
-          color: #E7D9FF
+          color: #E7D9FF;
           font-family: 'Lato Black', sans-serif
-          font-size: 12px
-          line-height: 15px
+          font-size: 12px;
+          line-height: 15px;
           text-transform: uppercase
         .author
           display: flex
           align-items: center
           &-info
-            color: #ffffff
             display: flex
             align-items: center
             flex-wrap: wrap
             margin-left: 10px
+            color: #fff
           &-avatar
             width: 45px
             height: 45px
@@ -160,24 +170,24 @@
         grid-area: 2 / 1 / 4 / 2
         .article
           &-thumb
-            height: 330px
+            height: 275px
             object-fit: cover
             width: 100%
           &-grid
             &-title
               padding: 15px 25px 35px
+              margin: 0
               font-family: Roboto Slab
               font-style: normal
               font-weight: bold
               font-size: 16px
               line-height: 25px
-              margin: 0
       &-default
         position: relative
         .article
           &-grid
             &-permalink
-              padding: 25px 25px 30px
+              padding: 25px 25px 30px 25px 
               position: absolute
               width: 100%
               height: 100%
@@ -194,36 +204,5 @@
               margin: 0
               margin-bottom: 5px
             &-excerpt
-              margin-top: 0
               margin-bottom: auto
-.comments
-  display: flex
-  align-items: center
-  &-icon
-    fill: #BCBFC2
-  &-counter
-    color: #939699
-    font-size: 12px
-    line-height: 15px
-    margin-left: 5px
-@media screen and ( max-width: 1200px )
-  .article
-    &-grid
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr))
-@media screen and ( max-width: 1024px )
-  .article
-    &-grid
-      width: 65%
-      grid-template-columns: 1fr
-      grid-template-rows: repeat(3, minmax(300px, max-content))
-      &-item
-        grid-area: auto
-        .tag
-          margin-bottom: 30px
-@media screen and ( max-width: 960px )
-  .main
-    &-grid
-      flex-wrap: wrap
-  .article
-    &-grid
-      width: 100%
+              margin-top: 0
