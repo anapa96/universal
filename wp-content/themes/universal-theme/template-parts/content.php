@@ -156,13 +156,19 @@
     <!-- /содержимое поста -->
   </div>
   <!-- /.container -->
-  <footer class="entry-footer">
-		<?php 
-      $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'universal-example' ) );
-			if ( $tags_list ) {
-				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( '%1$s', 'universal-example' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}?>
-	</footer><!-- подвал поста -->
+  <div class="container">
+    <footer class="entry-footer">
+      <?php 
+        $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'universal-example' ) );
+        if ( $tags_list ) {
+          /* translators: 1: list of tags. */
+          printf( '<span class="tags-links">' . esc_html__( '%1$s', 'universal-example' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        //ссылки на соцю сети
+        meks_ess_share();
+        }?>
+
+    </footer><!-- подвал поста -->
+  </div>
+  <!-- /.container -->
 
 </article>
