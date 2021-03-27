@@ -11,12 +11,39 @@
     margin: 0;
     padding: 0;
     list-style: none;
+  &-light
+    background-color: #fff
+    .logo
+      &-name
+        color: #4592FF
+    .menu
+      &-item
+        a
+          color: #939699
+    .search
+      &-form
+        input
+          background: #F5F5F5
+.custom
+  &-logo
+    width: 40px
+.logo
+  display: flex
+  align-items: center
+  text-decoration: none
+  &-name
+    color: #fff
+    font-family: 'Roboto Slab', sans-serif
+    font-size: 24px
+    margin-left: 10px
+    text-transform: capitalize
 .menu 
   &-item 
     a
       color: #fff;
       text-decoration: none;
       margin: 0 15px;
+      font-family: 'Lato Black'
   &-toggle
     display: none
 .search

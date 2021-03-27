@@ -6,11 +6,24 @@
       <!-- ./footer-menu-bar -->
 
       <div class="footer-info">
+        
+    <!--ВЫВОДИМ ЛОГО-->
+    <?php 
+      //если лого есть, нужно его вывести
+      if( has_custom_logo() ){
+        // логотип есть выводим его
+        echo '<div class="logo">' . get_custom_logo() . '</div>';
+      }else {
+        echo '<span class="logo-name">' . get_bloginfo('name') . '</span></div>';
+      }
+     ?>
+     
       <?php
         wp_nav_menu( [
           //где наводится (function). указываем либо место theme_location либо кокретное меню menu
           'theme_location'  => 'footer_menu',
           'container'       => 'nav', 
+          'container_class' => 'footer-nav-wrapper', 
           'menu_class'      => 'footer-nav', 
           'menu_id'         => '',
           'echo'            => true,

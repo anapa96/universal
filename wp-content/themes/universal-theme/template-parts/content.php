@@ -9,9 +9,10 @@
           echo get_template_directory_uri().'/assets/images/img-default.png';
         } ?>);">
     <div class="container">
-      
+    <div class="post-header-wrapper">
+        
      
-      <div class="post-header-nav">
+    <div class="post-header-nav">
       <?php
       foreach (get_the_category() as $category){
         printf(
@@ -46,8 +47,8 @@
 				)
 			);
       ?>
-      </div>
-      <!-- /.post-header-nav -->
+    </div>
+    <!-- /.post-header-nav -->
 
       <div class="post-header-title-wrapper">
         <?php
@@ -66,17 +67,19 @@
       <!-- /.post-header-title-wrapper -->
       <?php the_excerpt(  )?>
       <div class="post-header-info">
-        <span class="post-header-date">
-          <svg width="19" height="15" fill="#BCBFC2" class="likes-icon">
-           <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#clock"></use>
-          </svg>
-          <?php the_time( 'j F, G:i' )?></span>
+          <span class="post-header-date">
+            <svg width="19" height="15" fill="#BCBFC2" class="likes-icon">
+            <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#clock"></use>
+            </svg>
+            <?php the_time( 'j F, G:i' )?>
+          </span>
           <div class="comments post-header-comments">
             <svg width="19" height="15" fill="#BCBFC2" class="icon comments-icon">
               <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#comment"></use>
             </svg>
             <span class="comments-counter"><?php comments_number('0', '1', '%')?></span>
           </div>
+          <!-- /.post-header-comments -->
           <div class="likes post-header-likes">
              
             <svg width="19" height="15" fill="#BCBFC2" class="likes-icon">
@@ -85,42 +88,74 @@
                 
             <span class="likes-counter"><?php comments_number('0', '1', '%')?></span>
           </div>
+          <!-- /.post-header-likes -->
         </div>
         <!-- /.post-header-info -->
+        
+        <div class="post-author">
+          <div class="post-author-info">
+             <!--//узнаем id автора-->
+             <?php $author_id=get_the_author_meta('ID') ?>
+      
+              <img src="<?php echo get_avatar_url('ID')?>" alt="" class="post-author-avatar">
+                <span class="post-author-name"><?php the_author();?></span>
+                <span class="post-author-rank">Должность</span>
+                <span class="post-author-posts">
+                  <?php echo plural_form (
+                    count_user_posts($author_id),
+                    /* варианты написания для количества 1, 2 и 5 */
+                    array('статья','статьи','статей'))
+                  ?>
+                </span>
+          </div>
+          <!-- /.post-author-info -->
+
+          <a href="<?php echo get_author_posts_url($author_id)?>" class="post-author-link">
+            Страница автора
+          </a>
+          <!-- /.post-author-link -->
+        </div>
+        <!-- /.post-author -->
+    
+      </div>
+    <!-- /.post-header-wrapper -->
+      
     </div>
     <!-- /.container -->
 	</header>
   <!-- /шапка поста -->
 
-  <!--Содержимое поста-->
-  <div class="entry-content">
-		<?php
-    //выводим содержимое
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'universal-example' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
+  <div class="container">
+    <!--Содержимое поста-->
+    <div class="post-content">
+      <?php
+      //выводим содержимое
+      the_content(
+        sprintf(
+          wp_kses(
+            /* translators: %s: Name of current post. Only visible to screen readers */
+            __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'universal-example' ),
+            array(
+              'span' => array(
+                'class' => array(),
+              ),
+            )
+          ),
+          wp_kses_post( get_the_title() )
+        )
+      );
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Страница:', 'universal-example' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div>
-  <!-- /содержимое поста -->
-
+      wp_link_pages(
+        array(
+          'before' => '<div class="page-links">' . esc_html__( 'Страница:', 'universal-example' ),
+          'after'  => '</div>',
+        )
+      );
+      ?>
+    </div>
+    <!-- /содержимое поста -->
+  </div>
+  <!-- /.container -->
   <footer class="entry-footer">
 		<?php 
       $tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'universal-example' ) );

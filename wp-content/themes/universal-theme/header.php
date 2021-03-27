@@ -17,13 +17,34 @@
     <div class="header__wrapper">
 
     <!--ВЫВОДИМ ЛОГО-->
-     <?php 
+    <?php 
       //если лого есть, нужно его вывести
-      if( has_custom_logo() ){
-        // логотип есть выводим его
-        the_custom_logo();
+      if( has_custom_logo()){
+        //лого есть, станица не главная
+        if( !is_front_page() ) {
+          $logo_img = '';
+          if( $custom_logo_id = get_theme_mod('custom_logo') ){
+            $logo_img = wp_get_attachment_image( $custom_logo_id, 'full', false, array(
+              'class'    => 'custom-logo',
+              'itemprop' => 'logo',
+            ) );
+          }
+
+          echo  '<a href="'.get_home_url().'" class="logo">' . $logo_img . '<span class="logo-name">' . get_bloginfo('name') . '</span></a>';
+        } else{
+          
+
+          $logo_img = '';
+          if( $custom_logo_id = get_theme_mod('custom_logo') ){
+            $logo_img = wp_get_attachment_image( $custom_logo_id, 'full', false, array(
+              'class'    => 'custom-logo',
+              'itemprop' => 'logo',
+            ) ); 
+          }
+          echo  '<div href="'.get_home_url().'" class="logo">' . $logo_img . '<span class="logo-name">' . get_bloginfo('name') . '</span></div>';
+        }
       }else {
-        echo 'Universal';
+        echo '<span class="logo-name">' . get_bloginfo('name') . '</span>';
       }
      ?>
 
