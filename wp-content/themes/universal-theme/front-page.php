@@ -360,7 +360,7 @@ if( $myposts ){
 <!--/блок расследования-->
 
 <div class="container">
-<div class="main-grid">
+<div class="favourites">
 <div class="digest-wrapper">
   <ul class="digest">
   <?php		
@@ -450,7 +450,7 @@ if( $myposts ){
 
 <?php get_sidebar('home-bottom');?>
 </div>
-<!-- /.main-grid -->
+<!-- /.favourites -->
 </div>
 <!-- /.container -->
 

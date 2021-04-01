@@ -106,6 +106,22 @@ add_action( 'widgets_init', 'universal_theme_widgets_init' );
 			'after_title'   => '',
 		)
 	);
+	//регистрируем сайдбар
+	register_sidebar(
+		array(
+      //название сайдбара
+			'name'          => esc_html__( 'Сайдбар на странице поиска', 'universal-example' ),
+			'id'            => 'main-sidebar-search',
+			'description'   => esc_html__( 'Добавьте виджиты сюда', 'universal-example' ),
+      //что будет перед этим виджитом: section с id виджита и классом
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+      //после виджита
+			'after_widget'  => '</section>',
+      //ешеду виджета
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
 }
 //вешаем функцию universal_theme_widgets_init (инициализация стандартных виджетов wp) на хук-событие widgets_init. 
 add_action( 'widgets_init', 'universal_theme_widgets_init' );
