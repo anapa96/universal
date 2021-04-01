@@ -71,7 +71,7 @@
       <?php 
         $args=array(
           'prev_text'    =>  '&larr; Назад',
-	        'next_text'    => __('Next &rarr;'),
+	        'next_text'    => __('Далее &rarr;'),
         );
         the_posts_pagination($args)?>
     </div>
