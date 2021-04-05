@@ -676,6 +676,10 @@ body {
   color: #262D33;
 }
 
+.article-grid-permalink:visited {
+  color: #262D33;
+}
+
 .article-grid-item {
   border-radius: 10px;
   background-color: #fff;
@@ -1503,6 +1507,10 @@ body {
   color: #ffffff;
 }
 
+.photo-report-button:visited {
+  color: #ffffff;
+}
+
 .photo-report-counter {
   margin-left: 8px;
 }
@@ -1860,6 +1868,10 @@ body {
   padding: 10px 25px;
   border: none;
   cursor: pointer;
+}
+
+.footer-social a:not(:last-child) {
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 1024px) {

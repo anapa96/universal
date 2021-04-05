@@ -511,7 +511,7 @@ if( $myposts ){
             </a>
               
                 <h3 class="photo-report-title"><?php the_title()?></h3>
-                <a href="<?php get_the_permalink()?>" class="button photo-report-button">
+                <a href="<?php echo get_the_permalink()?>" class="button photo-report-button">
                 <svg width="19" height="15" class="icon photo-report-icon">
                   <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#images"></use>
                 </svg>
